@@ -1,0 +1,1 @@
+/opt/linux_practice/compile/CMakeFiles/linux_practice.dir
