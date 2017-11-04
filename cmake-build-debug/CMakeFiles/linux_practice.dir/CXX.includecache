@@ -9,6 +9,12 @@
 /opt/linux_practice/main.cpp
 stdio.h
 -
-curses.h
+sys/time.h
+-
+signal.h
+-
+zconf.h
+-
+cstdlib
 -
 

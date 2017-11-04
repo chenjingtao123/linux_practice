@@ -1,1 +1,1 @@
-/usr/bin/g++   -g -fPIC -shared -O2  -Wall -D_GNU_SOURCE -std=c++0x    CMakeFiles/linux_practice.dir/main.cpp.o  -o linux_practice -rdynamic -lcurses 
+/usr/bin/g++       CMakeFiles/linux_practice.dir/main.cpp.o  -o linux_practice -rdynamic -lcurses 

@@ -3,7 +3,7 @@
  *    signals, which are in turn caught and used to count down
  */
 
-#include	<stdio.h>
+#include	    <stdio.h>
 #include        <sys/time.h>
 #include        <signal.h>
 
@@ -38,7 +38,7 @@ void countdown(int signum)
  *      arg in milliseconds, converted into whole seconds and microseconds
  *      note: set_ticker(0) turns off ticker
  */
-
+//触发信号
 int set_ticker( int n_msecs )
 {
         struct itimerval new_timeset;
