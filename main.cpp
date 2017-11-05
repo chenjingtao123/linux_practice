@@ -1,61 +1,44 @@
-/* ticker_demo.c
- *    demonstrates use of interval timer to generate reqular
- *    signals, which are in turn caught and used to count down
+/* waitdemo1.c - shows how parent pauses until child finishes
  */
 
-#include	    <stdio.h>
-#include        <sys/time.h>
-#include        <signal.h>
-#include        <zconf.h>
-#include        <cstdlib>
+#include	<stdio.h>
+#include     <zconf.h>
+#include     <cstdlib>
+#include     <sys/wait.h>
+
+#define	DELAY	2
 
 int main()
 {
-    void	countdown(int);
-    int     set_ticker(int n_msecs);
+    int  newpid;
+    void child_code(int), parent_code(int);
 
-    signal(SIGALRM, countdown);
-    if ( set_ticker(500) == -1 )
-        perror("set_ticker");
+    printf("before: mypid is %d\n", getpid());
+
+    if ( (newpid = fork()) == -1 )
+        perror("fork");
+    else if ( newpid == 0 )
+        child_code(DELAY);
     else
-        while( 1 )
-            pause();
-    return 0;
+        parent_code(newpid);
 }
-
-void countdown(int signum)
-{
-    static int num = 10;
-    printf("%d ..", num--);
-    fflush(stdout);
-    if ( num < 0 ){
-        printf("DONE!\n");
-        exit(0);
-    }
-}
-
-/* [from set_ticker.c]
- * set_ticker( number_of_milliseconds )    
- *      arranges for interval timer to issue SIGALRM's at regular intervals
- *      returns -1 on error, 0 for ok
- *      arg in milliseconds, converted into whole seconds and microseconds
- *      note: set_ticker(0) turns off ticker
+/*
+ * new process takes a nap and then exits
  */
-
-int set_ticker( int n_msecs )
+void child_code(int delay)
 {
-    struct itimerval new_timeset;
-    long    n_sec, n_usecs;
-
-    n_sec = n_msecs / 1000 ;		/* int part	*/
-    n_usecs = ( n_msecs % 1000 ) * 1000L ;	/* remainder	*/
-
-    new_timeset.it_interval.tv_sec  = 3;        /* set reload       */
-    new_timeset.it_interval.tv_usec = n_usecs;      /* new ticker value */
-    new_timeset.it_value.tv_sec     = n_sec  ;      /* store this       */
-    new_timeset.it_value.tv_usec    = n_usecs ;     /* and this         */
-
-    return setitimer(ITIMER_REAL, &new_timeset, NULL);
+    printf("child %d here. will sleep for %d seconds\n", getpid(), delay);
+    sleep(delay);
+    printf("child done. about to exit\n");
+    exit(17);
 }
-
-
+/*
+ * parent waits for child then prints a message
+ */
+void parent_code(int childpid)
+{
+    int wait_rv;		/* return value from wait() */
+    childpid=wait(&wait_rv);
+    int status=wait_rv>>8;
+    printf("done waiting for %d. Wait returned: %d\n", childpid,status);
+}

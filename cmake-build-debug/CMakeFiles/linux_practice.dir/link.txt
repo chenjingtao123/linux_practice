@@ -1,1 +1,1 @@
-/usr/bin/g++   -g   CMakeFiles/linux_practice.dir/main.cpp.o  -o linux_practice -rdynamic -lcurses 
+/usr/bin/g++   -g   CMakeFiles/linux_practice.dir/main.cpp.o CMakeFiles/linux_practice.dir/bounce2d.c.o  -o linux_practice -rdynamic -lcurses 

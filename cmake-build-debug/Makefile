@@ -123,6 +123,33 @@ linux_practice/fast:
 	$(MAKE) -f CMakeFiles/linux_practice.dir/build.make CMakeFiles/linux_practice.dir/build
 .PHONY : linux_practice/fast
 
+bounce2d.o: bounce2d.c.o
+
+.PHONY : bounce2d.o
+
+# target to build an object file
+bounce2d.c.o:
+	$(MAKE) -f CMakeFiles/linux_practice.dir/build.make CMakeFiles/linux_practice.dir/bounce2d.c.o
+.PHONY : bounce2d.c.o
+
+bounce2d.i: bounce2d.c.i
+
+.PHONY : bounce2d.i
+
+# target to preprocess a source file
+bounce2d.c.i:
+	$(MAKE) -f CMakeFiles/linux_practice.dir/build.make CMakeFiles/linux_practice.dir/bounce2d.c.i
+.PHONY : bounce2d.c.i
+
+bounce2d.s: bounce2d.c.s
+
+.PHONY : bounce2d.s
+
+# target to generate assembly for a file
+bounce2d.c.s:
+	$(MAKE) -f CMakeFiles/linux_practice.dir/build.make CMakeFiles/linux_practice.dir/bounce2d.c.s
+.PHONY : bounce2d.c.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -159,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... linux_practice"
+	@echo "... bounce2d.o"
+	@echo "... bounce2d.i"
+	@echo "... bounce2d.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -18,3 +18,11 @@ main()
 	printf("After: my pid is %d, fork() said %d\n",
 			getpid(), ret_from_fork);
 }
+
+int main(){
+	int ret_from_fork,mypid;
+
+	mypid=getpid();
+
+	ret_from_fork=fork();
+}

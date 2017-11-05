@@ -6,9 +6,3 @@
 
 #IncludeRegexTransform: 
 
-/opt/linux_practice/main.cpp
-stdio.h
--
-zconf.h
--
-
